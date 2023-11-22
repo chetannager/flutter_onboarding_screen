@@ -10,6 +10,7 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  final PageController _controller = PageController();
   int currentIndex = 0;
 
   List sliders = [
@@ -39,24 +40,22 @@ class _OnboardingState extends State<Onboarding> {
       body: Column(
         children: [
           Expanded(
-            flex: 3,
-            child: SizedBox(
+            flex: 5,
+            child: Container(
               width: MediaQuery.of(context).size.width,
-              child: Transform.flip(
-                flipX: true,
-                child: CustomPaint(
-                  size: Size(
+              child: CustomPaint(
+                size: Size(
                     MediaQuery.of(context).size.width,
-                    (MediaQuery.of(context).size.width * 0.5).toDouble(),
-                  ),
-                  painter: CustomShape(),
-                ),
+                    (MediaQuery.of(context).size.width * 0.47632311977715874)
+                        .toDouble()),
+                painter: CustomShape(),
               ),
             ),
           ),
           Expanded(
-            flex: 12,
+            flex: 15,
             child: PageView.builder(
+              controller: _controller,
               onPageChanged: (index) {
                 setState(() {
                   currentIndex = index;
@@ -84,7 +83,7 @@ class _OnboardingState extends State<Onboarding> {
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(
-                            height: 25.0,
+                            height: 20.0,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.8,
@@ -116,6 +115,9 @@ class _OnboardingState extends State<Onboarding> {
                     setState(() {
                       currentIndex = currentIndex + 1;
                     });
+                    _controller.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.linear);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
