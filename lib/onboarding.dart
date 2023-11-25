@@ -155,7 +155,7 @@ class _OnboardingState extends State<Onboarding> {
                           decoration: BoxDecoration(
                             color: currentIndex == sliders.indexOf(i)
                                 ? kPrimaryColor
-                                : const Color.fromRGBO(217, 225, 228, 1),
+                                : kInactiveIndicatorColor,
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
